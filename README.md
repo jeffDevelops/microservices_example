@@ -4,6 +4,8 @@ operations to interface with individual collections and/or tables. Rather than h
 spins up Lambas on a per-request basis, eliminating the finanacial overhead of continuously running a server, and eliminating
 labor costs of maintaining, monitoring, and upgrading server infrastructure.
 
+![Serverless network diagram](./.doc/serverless_diagram.png)
+
 ## Microservice Structure
 Now is programmed to serve the built index.js file in `api/<microservice-name>/dist/`. Make your changes to each microservice
 in `api/<microservice-name>/src/`, rebuild the microservice with `npm run build` from the TypeScript source when done.
@@ -16,6 +18,6 @@ After making changes either to the client or microservice(s), `now`'s diffing ca
 of the application, run `now deploy`
 
 ## Stack
-Now - Lambdas, Serverless deployment
-React w/ Typescript
-Express Routing (per microservice)
+- Now - Lambdas, Serverless deployment
+- React w/ Typescript
+- Express Routing (per microservice)
