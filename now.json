@@ -3,17 +3,16 @@
   "name": "Monorepo",
   "builds": [
     { "src": "api/**/dist/*.js", "use": "@now/node" },
-    { "src": "client/package.json", "use": "@now/static-build" }
+    { "src": "client/package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
   ],
   "routes": [
-    { "src": "client/static/(.*)", "headers": { "cache-control": "s-maxage=31536000,immutable" }, "dest": "/static/$1" },
-    { "src": "client/favicon.ico", "dest": "/favicon.ico" },
-    { "src": "client/asset-manifest.json", "dest": "/asset-manifest.json" },
-    { "src": "client/manifest.json", "dest": "/manifest.json" },
-    { "src": "client/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
-    { "src": "client/service-worker.js", "headers": { "cache-control": "s-maxage=0" }, "dest": "/service-worker.js" },
-    { "src": "client/(.*)", "headers": {"cache-control": "s-maxage=0"}, "dest": "/index.html" },
-
-    { "src": "/api/(.*)", "dest": "api/$1/dist/index.js" }
+    { "src": "/api/(.*)", "dest": "/api/$1/dist/index.js" },
+    { "src": "^/static/(.*)", "headers": { "cache-control": "s-maxage=31536000,immutable" }, "dest": "/client/static/$1" },
+    { "src": "^/favicon.ico", "dest": "/client/favicon.ico" },
+    { "src": "^/asset-manifest.json", "dest": "/client/asset-manifest.json" },
+    { "src": "^/manifest.json", "dest": "/client/manifest.json" },
+    { "src": "^/precache-manifest.(.*)", "dest": "/client/precache-manifest.$1" },
+    { "src": "^/service-worker.js", "headers": { "cache-control": "s-maxage=0" }, "dest": "/client/service-worker.js" },
+    { "src": "^/(.*)", "headers": {"cache-control": "s-maxage=0"}, "dest": "/client/index.html" }
   ]
 }
